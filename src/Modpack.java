@@ -1,25 +1,44 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Modpack {
+    private String modpackPath;
     private String modpackName;
-    private int modAmount;
     private List<Mod> mods;
 
 
-    public Modpack(String modpackName) {
+    public Modpack(String modpackName, String modpackPath) {
         this.modpackName = modpackName;
-        modAmount = 0;
+        this.modpackPath = modpackPath;
         mods = new ArrayList<>();
+
+        File folder = new File(this.modpackPath);
+        File[] files = folder.listFiles();
+
+        if(files != null) {
+            for(File file : files) {
+                if(file.isFile() && file.getName().endsWith(".jar")) {
+                    String filename = file.getName().replace(".jar", "");
+                    Mod mod = new Mod(filename);
+                    mods.add(mod);
+                }
+            }
+        }
+
     }
 
-    public void addMod(String modVersion, String modName) {
-        Mod mod = new Mod(modName, modVersion);
+    public void addMod (String modName) {
+        Mod mod = new Mod(modName);
         mods.add(mod);
     }
 
-    public void listMods() {
-        System.out.println(mods.toString());
+    public String listMods() {
+        return mods.toString();
+    }
+
+    public String getModpackPath() {
+        return modpackPath;
     }
 
     public String getModpackName() {
@@ -27,7 +46,7 @@ public class Modpack {
     }
 
     public int getModAmount() {
-        return modAmount;
+        return mods.size();
     }
 
 }

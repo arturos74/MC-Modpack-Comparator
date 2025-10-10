@@ -1,23 +1,23 @@
 public class Mod {
     private String modName;
-    private String modVersion;
+    //private String modVersion;
 
-    public Mod(String modName, String modVersion) {
+    public Mod(String modName) {
         this.modName = modName;
-        this.modVersion = modVersion;
+        //modVersion = "1.20.1";
 
     }
 
     @Override
     public String toString() {
-        return "[" + modVersion + "] " + modName;
+        return modName + " ";
     }
 
     public String getModName() {
         return modName;
     }
 
-    public String getModVersion() {
+    /*public String getModVersion() {
         return modVersion;
-    }
+    }*/
 }
