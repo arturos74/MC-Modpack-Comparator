@@ -33,8 +33,12 @@ public class Modpack {
         mods.add(mod);
     }
 
-    public String listMods() {
+    /*public String listMods() {
         return mods.toString();
+    }*/
+
+    public String listMods(int i) {
+        return mods.get(i).toString();
     }
 
     public String getModpackPath() {

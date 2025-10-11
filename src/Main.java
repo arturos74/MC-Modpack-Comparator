@@ -9,7 +9,9 @@ void main() {
 
 }
 
-
+void compareModpack(Modpack modpack1, Modpack modpack2, JTextArea box1,  JTextArea box2) {
+    
+}
 
 void createAndShowGUI() {
 
@@ -88,8 +90,25 @@ void createAndShowGUI() {
                 Modpack modpack1 = new Modpack("Modpack 1", packA_Field.getText());
                 Modpack modpack2 = new Modpack("Modpack 2", packB_Field.getText());
 
-                box1.setText(modpack1.listMods());
-                box2.setText(modpack2.listMods());
+                String mods1text = "Modpack 1 Mods: \n";
+                String mods2text = "Modpack 2 Mods: \n";
+
+                for(int i = 0; i < modpack1.getModAmount(); i++) {
+                    mods1text = mods1text + modpack1.listMods(i);
+                }
+
+                box1.setText(mods1text);
+
+                for(int i = 0; i < modpack2.getModAmount(); i++) {
+                    mods2text = mods2text + modpack2.listMods(i);
+                }
+
+                box2.setText(mods2text);
+
+
+
+
+
 
 
             }

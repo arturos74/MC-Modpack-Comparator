@@ -10,7 +10,7 @@ public class Mod {
 
     @Override
     public String toString() {
-        return modName + " ";
+        return modName + "\n";
     }
 
     public String getModName() {
