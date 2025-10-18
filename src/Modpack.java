@@ -38,16 +38,17 @@ public class Modpack {
     }*/
 
     public String getDifferences(Modpack modpackB) {
-        String differences = "";
+        StringBuilder differences = new StringBuilder();
 
-        for(int i = 0; i < modpackB.getModAmount(); i++) {
-            if(!mods.contains(modpackB.getMod(i))) {
-                differences = differences + modpackB.getMod(i).toString();
+        for (Mod mod : modpackB.mods) {
+            if (!this.mods.contains(mod)) {
+                differences.append(mod).append("\n");
             }
         }
 
-        return differences;
+        return differences.toString();
     }
+
 
     public Mod getMod(int i) {
         return mods.get(i);
