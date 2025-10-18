@@ -37,6 +37,22 @@ public class Modpack {
         return mods.toString();
     }*/
 
+    public String getDifferences(Modpack modpackB) {
+        String differences = "";
+
+        for(int i = 0; i < modpackB.getModAmount(); i++) {
+            if(!mods.contains(modpackB.getMod(i))) {
+                differences = differences + modpackB.getMod(i).toString();
+            }
+        }
+
+        return differences;
+    }
+
+    public Mod getMod(int i) {
+        return mods.get(i);
+    }
+
     public String listMods(int i) {
         return mods.get(i).toString();
     }

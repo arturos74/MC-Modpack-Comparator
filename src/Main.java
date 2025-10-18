@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.util.List;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -9,8 +10,14 @@ void main() {
 
 }
 
-void compareModpack(Modpack modpack1, Modpack modpack2, JTextArea box1,  JTextArea box2) {
-    
+String toStringList(Modpack modpack) {
+    String modsText = "";
+
+    for(int i = 0; i < modpack.getModAmount(); i++) {
+        modsText = modsText + modpack.listMods(i);
+    }
+
+    return modsText;
 }
 
 void createAndShowGUI() {
@@ -25,11 +32,11 @@ void createAndShowGUI() {
     inputPanel.setBorder(BorderFactory.createTitledBorder("Modpack Paths"));
 
     JLabel packA_Label = new JLabel("Modpack A Path:");
-    JTextField packA_Field = new JTextField("");
+    JTextField packA_Field = new JTextField("C:\\Users\\redtr\\AppData\\Roaming\\ATLauncher\\instances\\MCEternal2\\mods");
     JButton browseA_Button = new JButton("Browse");
 
     JLabel packB_Label = new JLabel("Modpack B Path:");
-    JTextField packB_Field = new JTextField("");
+    JTextField packB_Field = new JTextField("C:\\Users\\redtr\\AppData\\Roaming\\ATLauncher\\instances\\AlltheMods10ATM10\\mods");
     JButton browseB_Button = new JButton("Browse");
 
     JButton compareButton = new JButton("Compare");
@@ -90,26 +97,11 @@ void createAndShowGUI() {
                 Modpack modpack1 = new Modpack("Modpack 1", packA_Field.getText());
                 Modpack modpack2 = new Modpack("Modpack 2", packB_Field.getText());
 
-                String mods1text = "Modpack 1 Mods: \n";
-                String mods2text = "Modpack 2 Mods: \n";
+                box1.setText(toStringList(modpack1));
+                box2.setText(toStringList(modpack1));
 
-                for(int i = 0; i < modpack1.getModAmount(); i++) {
-                    mods1text = mods1text + modpack1.listMods(i);
-                }
-
-                box1.setText(mods1text);
-
-                for(int i = 0; i < modpack2.getModAmount(); i++) {
-                    mods2text = mods2text + modpack2.listMods(i);
-                }
-
-                box2.setText(mods2text);
-
-
-
-
-
-
+                box3.setText(modpack1.getDifferences(modpack2));
+                box4.setText(modpack2.getDifferences(modpack1));
 
             }
             else  {
